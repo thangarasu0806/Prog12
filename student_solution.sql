@@ -1,20 +1,10 @@
 USE CollegeDB;
 
--- Department Table
 CREATE TABLE Department (
     DepartmentID INT PRIMARY KEY,
     DepartmentName VARCHAR(100)
 );
 
--- Faculty Table
-CREATE TABLE Faculty (
-    FacultyID INT PRIMARY KEY,
-    FacultyName VARCHAR(100),
-    DepartmentID INT,
-    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
-);
-
--- Student Table
 CREATE TABLE Student (
     StudentID INT PRIMARY KEY,
     StudentName VARCHAR(100),
@@ -22,7 +12,13 @@ CREATE TABLE Student (
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
 );
 
--- Course Table
+CREATE TABLE Faculty (
+    FacultyID INT PRIMARY KEY,
+    FacultyName VARCHAR(100),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+);
+
 CREATE TABLE Course (
     CourseID INT PRIMARY KEY,
     CourseName VARCHAR(100),
@@ -30,7 +26,6 @@ CREATE TABLE Course (
     FOREIGN KEY (FacultyID) REFERENCES Faculty(FacultyID)
 );
 
--- Enrollment Table
 CREATE TABLE Enrollment (
     EnrollmentID INT PRIMARY KEY,
     StudentID INT,
@@ -38,3 +33,8 @@ CREATE TABLE Enrollment (
     FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
     FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 );
+
+-- Department: 3 records
+INSERT INTO Department (DepartmentID, DepartmentName) VALUES
+(1, 'Computer Science'),
+(2, '
